@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colour tokens — sampled directly from the 1920x1080 reference captures. */
+  --color-ink: #222222;
+  --color-ink-soft: #717171;
+  --color-line: #dddddd;
+  --color-line-soft: #ebebeb;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f7f7;
+  --color-surface-control: #f2f2f2;
+  --color-brand: #ff385c;
+  --color-brand-start: #e61e4d;
+  --color-brand-mid: #e31c5f;
+  --color-brand-end: #d70466;
+  --color-accent: #164734;
+
+  /* Radii — the gallery wall was measured at ~12px in the reference raster. */
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-image: 12px;
+
+  /* Shadows — not measurable from a flat raster; inferred from the capture's softness. */
+  --shadow-search: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 6px 16px rgba(0, 0, 0, 0.12);
+  --shadow-button: 0 1px 4px rgba(0, 0, 0, 0.18);
+
+  /* Layout — the listing column measured at exactly 1400px inside a 1901px viewport. */
+  --container-listing: 1400px;
+
+  /* The photo tour is a narrower centred column: 762px measured inside a 1190px page. */
+  --container-tour: 762px;
+
+  --font-sans: var(--font-nunito-sans), "Nunito Sans", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  /* Vertical metrics measured from the reference captures. */
+  --header-height: 110px;
+  --listing-nav-height: 83px;
+}
+
+html {
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--color-surface);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.focus-light:focus-visible {
+  outline-color: var(--color-surface);
+}
+
+.focus-inset:focus-visible {
+  outline-offset: -2px;
+}
+
+dialog.overlay-dialog {
+  opacity: 0;
+  transition:
+    opacity 200ms ease-out,
+    display 200ms ease-out allow-discrete,
+    overlay 200ms ease-out allow-discrete;
+}
+
+dialog.overlay-dialog[open] {
+  opacity: 1;
+}
+
+@starting-style {
+  dialog.overlay-dialog[open] {
+    opacity: 0;
+  }
+}
